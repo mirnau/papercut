@@ -1,7 +1,8 @@
 ---
-tags: 
+tags:
+  - papercut/GDD
 last update: 
-created: 
+created: 2025-03-10
 owner:
 ---
 # Synopsis and Elevator Pitch
@@ -20,4 +21,3 @@ owner:
 >
 >- Look and feel: Give a summary of the look and feel of the game.
 
-![[Design Pillars for Paper Cut]]
