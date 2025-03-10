@@ -1,0 +1,175 @@
+{
+  "main": {
+    "id": "69049eb6067d6617",
+    "type": "split",
+    "children": [
+      {
+        "id": "32a33ade1e798a53",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b31e5cf776a91423",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_Obsidian/Templates/Shared/Game Design Document/1-Vision/Design Pillar Template.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Design Pillar Template"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4a6cdb9aee97f71f",
+    "type": "split",
+    "children": [
+      {
+        "id": "14c7d3472e9d4d15",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "308fbf0143f5ee27",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "File explorer"
+            }
+          },
+          {
+            "id": "c99eb146fa5483c0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "61f475133811e302",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0f913a5c5256817c",
+    "type": "split",
+    "children": [
+      {
+        "id": "a616a707b07ab6f8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bcf7cb7258826e2c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "_Obsidian/Templates/Shared/Game Design Document/1-Vision/Design Pillar Template.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Design Pillar Template"
+            }
+          },
+          {
+            "id": "cdd34651248b06cb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "_Obsidian/Templates/Shared/Game Design Document/1-Vision/Design Pillar Template.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Design Pillar Template"
+            }
+          },
+          {
+            "id": "c262dd02c05ea3b9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "87fcb21b0f0f7ec5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "_Obsidian/Templates/Shared/Game Design Document/1-Vision/Design Pillar Template.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Design Pillar Template"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "b31e5cf776a91423",
+  "lastOpenFiles": [
+    "_Obsidian/Templates/Shared/Game Design Document/1-Vision/Goal Template.md"
+  ]
+}
