@@ -4,7 +4,23 @@
 #
 
 # Obsidian Settings
-PaperCutVault/.obsidian/
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore user-specific UI settings
+PaperCutVault/.obsidian/workspace.json
+
+# Ignore Obsidian Sync conflict files
+PaperCutVault/.obsidian/storage.json
+
+# Ignore `obsidian-git` plugin state (avoids conflicts in sync)
+PaperCutVault/.obsidian/plugins/obsidian-git/data.json
+
+# Ignore themes and plugins (so users can install their own)
+PaperCutVault/.obsidian/themes/
+PaperCutVault/.obsidian/plugins/
+PaperCutVault/.obsidian/appearance.json
 
 /[Ll]ibrary/
 /[Tt]emp/
