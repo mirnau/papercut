@@ -1,0 +1,43 @@
+{
+  "move-tags": true,
+  "tag-colors": [
+    {
+      "tagKey": "",
+      "color": "",
+      "backgroundColor": ""
+    }
+  ],
+  "move-dates": true,
+  "metadata-keys": [
+    {
+      "metadataKey": "priority",
+      "label": "Priority:",
+      "shouldHideLabel": false,
+      "containsMarkdown": false
+    },
+    {
+      "metadataKey": "owner",
+      "label": "Task Owner:",
+      "shouldHideLabel": false,
+      "containsMarkdown": false
+    },
+    {
+      "metadataKey": "description",
+      "label": "Description:",
+      "shouldHideLabel": false,
+      "containsMarkdown": false
+    },
+    {
+      "metadataKey": "waitingfor",
+      "label": "Waiting for:",
+      "shouldHideLabel": false,
+      "containsMarkdown": false
+    },
+    {
+      "metadataKey": "completed",
+      "label": "Completed",
+      "shouldHideLabel": false,
+      "containsMarkdown": false
+    }
+  ]
+}

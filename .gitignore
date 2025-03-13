@@ -3,11 +3,22 @@
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 
-#large file exlusion
+# Large file exclusion
 /papercut/_project/_unsyncedAssets
 
-# Obsidian Settings
-PaperCutVault/.obsidian/
+# Ignore Obsidian themes (allow users to have personal themes)
+PaperCutVault/.obsidian/themes/
+
+# Ignore workspace.json and hotkeys to keep UI layout personal
+PaperCutVault/.obsidian/workspace.json
+!PaperCutVault/.obsidian/hotkeys.json
+
+# Ensure plugins are shared
+!PaperCutVault/.obsidian/plugins/
+!PaperCutVault/.obsidian/plugins/**
+
+# Allow app settings to be shared
+!PaperCutVault/.obsidian/app.json
 
 /papercut/[Ll]ibrary/
 /papercut/[Tt]emp/
