@@ -41,14 +41,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: Background 3
     uniqueID: 3536796911
     locked: 0
-  - name: Forground
+  - name: Background 2
+    uniqueID: 292943019
+    locked: 0
+  - name: Background 1
+    uniqueID: 3923923935
+    locked: 0
+  - name: Level
     uniqueID: 1732760251
     locked: 0
-  - name: Main Ground
+  - name: Player
+    uniqueID: 2202918403
+    locked: 0
+  - name: Forground 3
     uniqueID: 4222737353
+    locked: 0
+  - name: Forground 2
+    uniqueID: 597023615
+    locked: 0
+  - name: Forground 1
+    uniqueID: 2526551399
     locked: 0
   m_RenderingLayers:
   - Default
