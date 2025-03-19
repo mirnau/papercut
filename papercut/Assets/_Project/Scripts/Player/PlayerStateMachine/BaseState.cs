@@ -15,11 +15,12 @@ public class BaseState
 
     public virtual void Update()
     {
-        playerManager.transform.position += (Vector3)(playerManager.direction * playerManager.speed * Time.deltaTime);
         ApplyMovement();
     }
     public virtual void EnterState() 
     {
+
+        playerManager.transform.rotation = Quaternion.identity;
         playerManager.ChangeSprite();
     }
 
@@ -27,7 +28,7 @@ public class BaseState
 
     public virtual void ApplyMovement()
     {
-
+        playerManager.transform.position += (Vector3)(playerManager.direction * playerManager.speed * Time.deltaTime);
     }
 
     

@@ -14,7 +14,7 @@ public class PaperPlaneState : BaseState
     public override void EnterState()
     {
         playerManager.characterSprite = PlayerManager.CharacterSprite.Plane;
-        playerManager.rb2D.gravityScale = 0.4f;
+        playerManager.rb2D.gravityScale = 0.2f;
         base.EnterState();
     }
 

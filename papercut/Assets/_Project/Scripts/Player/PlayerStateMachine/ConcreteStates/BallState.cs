@@ -10,7 +10,8 @@ public class BallState : BaseState
 
     public override void ApplyMovement()
     {
-        base.ApplyMovement();
+        playerManager.transform.position += new Vector3(playerManager.direction.x * playerManager.speed * Time.deltaTime, 0, 0);
+
     }
     public void ApplyRotation()
     {
