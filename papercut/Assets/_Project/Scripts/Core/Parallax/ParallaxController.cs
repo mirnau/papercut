@@ -1,26 +1,36 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class ParallaxController : MonoBehaviour
 {
-    [SerializeField] List<Transform> parallaxLayers;
-    [SerializeField] float parallaxStrength = 0.5f;
+    [System.Serializable]
+    public class ParallaxLayer
+    {
+        public List<Transform> levelPartition;
+    }
 
-    private Vector3 lastCamPosition;
-    private Vector3 backgroundDisplacement;
+    [SerializeField] List<ParallaxLayer> parallaxLayers;
+    [SerializeField] float parallaxStrength = 1f;
 
-    void Awake() => lastCamPosition = transform.position;
+    private Vector3 m_lastCamPosition;
+    private Vector3 m_cameraDelta;
+
+    void Awake() => m_lastCamPosition = transform.position;
 
     void LateUpdate()
     {
-        backgroundDisplacement = transform.position - lastCamPosition;
+        m_cameraDelta = transform.position - m_lastCamPosition;
 
         for (int i = 0; i < parallaxLayers.Count; i++)
         {
             float parallaxFactor = (float)i / (parallaxLayers.Count - 1);
-            parallaxLayers[i].position -= parallaxFactor * parallaxStrength * backgroundDisplacement;
+
+            for (int j = 0; j < parallaxLayers[i].levelPartition.Count; j++)
+            {
+                parallaxLayers[i].levelPartition[j].position -= parallaxFactor * parallaxStrength * m_cameraDelta;
+            }
         }
 
-        lastCamPosition = transform.position;
+        m_lastCamPosition = transform.position;
     }
 }
