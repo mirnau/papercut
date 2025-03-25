@@ -7,8 +7,8 @@ public class ParallaxController : MonoBehaviour
     [System.Serializable]
     public class ParallaxLayer
     {
-        public List<Transform> levelPartition;
-        public Color fogColor = Color.white; // <- Color Picker
+        public List<Transform> m_levelPartition;
+        public Color m_fogColor = Color.white; // <- Color Picker
     }
 
     [SerializeField] List<ParallaxLayer> m_ParallaxLayers;
@@ -51,14 +51,14 @@ public class ParallaxController : MonoBehaviour
             float fogAmount = Mathf.Lerp(m_FogRangeMin, m_FogRangeMax, parallaxFactor);
             var layer = m_ParallaxLayers[i];
 
-            foreach (var t in layer.levelPartition)
+            foreach (var t in layer.m_levelPartition)
             {
                 var renderers = t.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
                 foreach (var sr in renderers)
                 {
                     var matInstance = new Material(m_Shader);
                     matInstance.SetTexture("_MainTex", sr.sprite.texture);
-                    matInstance.SetColor("_FogColor", layer.fogColor);
+                    matInstance.SetColor("_FogColor", layer.m_fogColor);
                     matInstance.SetFloat("_FogAmount", fogAmount);
 
                     Material targetMat;
@@ -86,7 +86,6 @@ public class ParallaxController : MonoBehaviour
         }
     }
 
-
     void LateUpdate()
     {
 
@@ -109,7 +108,7 @@ public class ParallaxController : MonoBehaviour
             float parallaxFactor = (float)i / (m_ParallaxLayers.Count - 1);
             var layer = m_ParallaxLayers[i];
 
-            foreach (Transform t in layer.levelPartition)
+            foreach (Transform t in layer.m_levelPartition)
             {
                 t.position -= parallaxFactor * m_ParallaxStrength * m_cameraDelta;
             }
