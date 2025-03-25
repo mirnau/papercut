@@ -11,3 +11,5 @@ waitingfor:
 completed: false
 ---
 # Create a Procedural Wind System
+[Wind Vector Mathematics ](https://youtu.be/rB83DpBJQsE?si=t2Y4FuiCkfzFcKmb)
+

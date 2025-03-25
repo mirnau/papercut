@@ -9,6 +9,8 @@ kanban-plugin: board
 - [ ] [[Wind Vector Field]]
 - [ ] Persistance
 - [ ] [[Statemachine for player states]]
+- [ ] Tänka banor
+- [ ] Tänka ut mechanics
 
 
 ## STARTED
