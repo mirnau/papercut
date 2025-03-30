@@ -7,27 +7,29 @@ public class ParallaxController : MonoBehaviour
     [System.Serializable]
     public class ParallaxLayer
     {
-        public List<Transform> m_levelPartition;
-        public Color m_fogColor = Color.white;
+        public List<Transform> levelPartition;
+        public Color fogColor = Color.white; // <- Color Picker
     }
 
-    [SerializeField] float depthOffset = 30f;
+    [SerializeField] List<ParallaxLayer> m_ParallaxLayers;
     [SerializeField] float m_ParallaxStrength = 0.5f;
+    [SerializeField] Material m_Shader;
     [SerializeField] bool m_parallaxYOn;
     [SerializeField] bool m_parallaxXOn;
-    [SerializeField] Material m_Shader;
-    [SerializeField] List<ParallaxLayer> m_ParallaxLayers;
 
     [Header("Fog Range")]
     [SerializeField] float m_FogRangeMin = 0f;
     [SerializeField] float m_FogRangeMax = 1f;
 
+
     private Vector3 m_lastCamPosition;
     private Vector3 m_cameraDelta;
+
 
     void Awake()
     {
         m_lastCamPosition = transform.position;
+
         ApplyFogToLayers();
     }
 
@@ -49,14 +51,14 @@ public class ParallaxController : MonoBehaviour
             float fogAmount = Mathf.Lerp(m_FogRangeMin, m_FogRangeMax, parallaxFactor);
             var layer = m_ParallaxLayers[i];
 
-            foreach (var t in layer.m_levelPartition)
+            foreach (var t in layer.levelPartition)
             {
                 var renderers = t.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
                 foreach (var sr in renderers)
                 {
                     var matInstance = new Material(m_Shader);
                     matInstance.SetTexture("_MainTex", sr.sprite.texture);
-                    matInstance.SetColor("_FogColor", layer.m_fogColor);
+                    matInstance.SetColor("_FogColor", layer.fogColor);
                     matInstance.SetFloat("_FogAmount", fogAmount);
 
                     Material targetMat;
@@ -72,14 +74,24 @@ public class ParallaxController : MonoBehaviour
                         targetMat = sr.sharedMaterial;
 #endif
                     }
+
+#if UNITY_EDITOR
+                    if (targetMat.HasProperty("_FogAmount"))
+                    {
+                        Debug.Log($"[{sr.name}] _FogAmount: {targetMat.GetFloat("_FogAmount")}");
+                    }
+#endif
                 }
             }
         }
     }
 
+
     void LateUpdate()
     {
+
         m_cameraDelta = transform.position - m_lastCamPosition;
+
         m_cameraDelta.z = 0;
         m_cameraDelta.y *= -0.5f;
 
@@ -96,21 +108,10 @@ public class ParallaxController : MonoBehaviour
         {
             float parallaxFactor = (float)i / (m_ParallaxLayers.Count - 1);
             var layer = m_ParallaxLayers[i];
-            float offset = i * depthOffset;
 
-            for (int j = layer.m_levelPartition.Count - 1; j >= 0; j--)
+            foreach (Transform t in layer.levelPartition)
             {
-                Transform t = layer.m_levelPartition[j];
-                if (t == null)
-                {
-                    layer.m_levelPartition.RemoveAt(j);
-                    Debug.LogWarning("Removed destroyed transform from parallax layer");
-                    continue;
-                }
-
-                Vector3 targetPosition = t.position - parallaxFactor * m_ParallaxStrength * m_cameraDelta;
-                targetPosition.z = offset;
-                t.position = targetPosition;
+                t.position -= parallaxFactor * m_ParallaxStrength * m_cameraDelta;
             }
         }
 
