@@ -24,11 +24,8 @@ public class ParallaxController : MonoBehaviour
 
     [SerializeField] List<ParallaxLayer> m_ParallaxLayers;
 
-
-
     private Vector3 m_lastCamPosition;
     private Vector3 m_cameraDelta;
-
 
     void Awake()
     {
@@ -54,19 +51,19 @@ public class ParallaxController : MonoBehaviour
             float fogAmount = Mathf.Lerp(m_FogRangeMin, m_FogRangeMax, parallaxFactor);
             var layer = m_ParallaxLayers[i];
 
-            foreach (var t in layer.levelPartition)
+            foreach (var transform in layer.levelPartition)
             {
-                var renderers = t.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
+                var renderers = transform.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
                 foreach (var sr in renderers)
                 {
-                    var matInstance = new Material(m_Shader);
+                    Material matInstance = new(m_Shader);
                     matInstance.SetTexture("_MainTex", sr.sprite.texture);
                     matInstance.SetColor("_FogColor", layer.fogColor);
                     matInstance.SetFloat("_FogAmount", fogAmount);
                     sr.material = matInstance;
                 }
                 float zPosition = i == 0 ? 0 : -i * m_layerDepthOffset;
-                t.position = new Vector3(t.position.x, t.position.y, zPosition);
+                transform.position = new Vector3(transform.position.x, transform.position.y, zPosition);
             }
         }
     }
@@ -91,9 +88,9 @@ public class ParallaxController : MonoBehaviour
             float parallaxFactor = (float)i / (m_ParallaxLayers.Count - 1);
             var layer = m_ParallaxLayers[i];
 
-            foreach (Transform t in layer.levelPartition)
+            foreach (Transform transform in layer.levelPartition)
             {
-                t.position -= parallaxFactor * m_ParallaxStrength * m_cameraDelta;
+                transform.position -= parallaxFactor * m_ParallaxStrength * m_cameraDelta;
             }
         }
 

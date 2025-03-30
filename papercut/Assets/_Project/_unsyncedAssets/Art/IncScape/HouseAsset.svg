@@ -878,9 +878,9 @@
      borderopacity="0.3"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.088388348"
-     inkscape:cx="3880.602"
-     inkscape:cy="2245.7711"
+     inkscape:zoom="0.1767767"
+     inkscape:cx="6092.432"
+     inkscape:cy="2214.6584"
      inkscape:document-units="mm"
      inkscape:showpageshadow="0"
      inkscape:pagecheckerboard="1"
@@ -52554,7 +52554,7 @@
   </g>
   <g
      id="g4756"
-     transform="translate(586.91847,19.624497)"
+     transform="translate(-645.39317,-6.6963136)"
      inkscape:label="large house">
     <g
        id="g5493"
@@ -87702,7 +87702,7 @@
   </g>
   <g
      id="g14419"
-     transform="translate(-388.42303,77.611848)"
+     transform="translate(-434.82102,-485.15087)"
      inkscape:label="fiskarstuga">
     <g
        id="g14323"
@@ -89113,7 +89113,7 @@
   <g
      id="g10361"
      inkscape:label="skjul"
-     transform="translate(-1137.5971,45.577968)">
+     transform="translate(-1183.9951,-517.18475)">
     <g
        id="g10359"
        transform="translate(67.351921,210.69268)">
@@ -92655,4 +92655,23 @@
          inkscape:label="Tegelsten" />
     </g>
   </g>
+  <path
+     style="fill:#aa0000;stroke-width:0.264583"
+     d="m 625.16084,675.81748 c 0,0 82.54503,227.8036 47.62416,262.21242 -34.92101,34.40877 -1.05828,59.64189 43.38648,59.64189 44.44476,0 1210.50332,-1.84647 1210.50332,-1.84647 0,0 60.855,-112.74626 180.5011,-111.25507 200.7764,2.50235 340.0398,-206.58938 340.0398,-206.58938 l -456.5059,3.52712 -455.183,-1.89684 -455.183,-1.89683 z"
+     id="path1"
+     sodipodi:nodetypes="csscsccccc" />
+  <rect
+     style="fill:#fff6d5;stroke-width:0.264584"
+     id="rect1"
+     width="1385.9528"
+     height="175.11499"
+     x="1061.1669"
+     y="502.89438" />
+  <rect
+     style="fill:#c87137;stroke-width:0.264584"
+     id="rect1-4"
+     width="683.99609"
+     height="92.795975"
+     x="1061.1965"
+     y="407.75674" />
 </svg>
