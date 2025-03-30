@@ -45,6 +45,7 @@ public class PSDtoPSBRenamerWatcher
                         File.Move(psdFullPath, psbFullPath);
                         Debug.Log($"Renamed {Path.GetFileName(psdFullPath)} to {Path.GetFileName(psbFullPath)}");
                     }
+
                     string metaPath = psdFullPath + ".meta";
                     if (File.Exists(metaPath))
                         File.Delete(metaPath);
