@@ -11,15 +11,19 @@ public class ParallaxController : MonoBehaviour
         public Color fogColor = Color.white; // <- Color Picker
     }
 
-    [SerializeField] List<ParallaxLayer> m_ParallaxLayers;
+    [Header("LayerSettings")]
     [SerializeField] float m_ParallaxStrength = 0.5f;
     [SerializeField] Material m_Shader;
     [SerializeField] bool m_parallaxYOn;
     [SerializeField] bool m_parallaxXOn;
+    [SerializeField] float m_layerDepthOffset = 20f;
 
     [Header("Fog Range")]
     [SerializeField] float m_FogRangeMin = 0f;
     [SerializeField] float m_FogRangeMax = 1f;
+
+    [SerializeField] List<ParallaxLayer> m_ParallaxLayers;
+
 
 
     private Vector3 m_lastCamPosition;
@@ -29,7 +33,6 @@ public class ParallaxController : MonoBehaviour
     void Awake()
     {
         m_lastCamPosition = transform.position;
-
         ApplyFogToLayers();
     }
 
@@ -60,38 +63,17 @@ public class ParallaxController : MonoBehaviour
                     matInstance.SetTexture("_MainTex", sr.sprite.texture);
                     matInstance.SetColor("_FogColor", layer.fogColor);
                     matInstance.SetFloat("_FogAmount", fogAmount);
-
-                    Material targetMat;
-                    if (Application.isPlaying)
-                    {
-                        sr.material = matInstance;
-                        targetMat = sr.material;
-                    }
-                    else
-                    {
-#if UNITY_EDITOR
-                        sr.sharedMaterial = matInstance;
-                        targetMat = sr.sharedMaterial;
-#endif
-                    }
-
-#if UNITY_EDITOR
-                    if (targetMat.HasProperty("_FogAmount"))
-                    {
-                        Debug.Log($"[{sr.name}] _FogAmount: {targetMat.GetFloat("_FogAmount")}");
-                    }
-#endif
+                    sr.material = matInstance;
                 }
+                float zPosition = i == 0 ? 0 : -i * m_layerDepthOffset;
+                t.position = new Vector3(t.position.x, t.position.y, zPosition);
             }
         }
     }
 
-
     void LateUpdate()
     {
-
         m_cameraDelta = transform.position - m_lastCamPosition;
-
         m_cameraDelta.z = 0;
         m_cameraDelta.y *= -0.5f;
 
