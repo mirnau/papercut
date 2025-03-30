@@ -78,7 +78,7 @@ public class ParallaxController : MonoBehaviour
 #if UNITY_EDITOR
                     if (targetMat.HasProperty("_FogAmount"))
                     {
-                        Debug.Log($"[{sr.name}] _FogAmount: {targetMat.GetFloat("_FogAmount")}");
+                        //Debug.Log($"[{sr.name}] _FogAmount: {targetMat.GetFloat("_FogAmount")}");
                     }
 #endif
                 }

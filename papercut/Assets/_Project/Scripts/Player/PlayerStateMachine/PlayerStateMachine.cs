@@ -12,6 +12,7 @@ public class PlayerStateMachine
 
     public void ChangeState(BaseState newState)
     {
+        if (newState == CurrentPlayerState) return;
         CurrentPlayerState.ExitState();
         CurrentPlayerState = newState;
         CurrentPlayerState.EnterState();

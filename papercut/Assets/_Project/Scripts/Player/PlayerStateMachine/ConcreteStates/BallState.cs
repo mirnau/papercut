@@ -8,14 +8,14 @@ public class BallState : BaseState
     {
     }
 
-    public override void ApplyMovement()
+    public override void ApplyMovement(float verticalPower)
     {
         playerManager.transform.position += new Vector3(playerManager.direction.x * playerManager.speed * Time.deltaTime, 0, 0);
 
     }
     public void ApplyRotation()
     {
-        if (playerManager.direction != Vector2.zero)
+        if (playerManager.direction.x != 0)
         {
             float rotationAmount = -playerManager.direction.x * rotationSpeed * Time.deltaTime;
             playerManager.transform.Rotate(0, 0, rotationAmount); // Rotate around Z-axis for 2D
@@ -36,15 +36,12 @@ public class BallState : BaseState
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            playerManager.PlayerStateMachine.ChangeState(playerManager.CharacterState);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            playerManager.PlayerStateMachine.ChangeState(playerManager.PaperPlaneState);
-        }
-        ApplyRotation();
+        ChangeState();
         base.Update();
+    }
+    public override void PhysicsUpdate()
+    {
+        ApplyRotation();
+        base.PhysicsUpdate();
     }
 }

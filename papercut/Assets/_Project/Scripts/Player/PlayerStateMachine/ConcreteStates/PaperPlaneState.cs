@@ -6,15 +6,15 @@ public class PaperPlaneState : BaseState
     {
     }
 
-    public override void ApplyMovement()
+    public override void ApplyMovement(float verticalPower)
     {
-        base.ApplyMovement();
+        base.ApplyMovement(playerManager.flightPower);
     }
 
     public override void EnterState()
     {
         playerManager.characterSprite = PlayerManager.CharacterSprite.Plane;
-        playerManager.rb2D.gravityScale = 0.2f;
+        playerManager.rb2D.gravityScale = 0.5f;
         base.EnterState();
     }
 
@@ -27,14 +27,11 @@ public class PaperPlaneState : BaseState
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            playerManager.PlayerStateMachine.ChangeState(playerManager.CharacterState);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            playerManager.PlayerStateMachine.ChangeState(playerManager.BallState);
-        }
+        ChangeState();
         base.Update();
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 }
