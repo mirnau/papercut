@@ -6,27 +6,47 @@ public class WindBlock : MonoBehaviour
     public enum WindDirection { L=0,R=1,U=2,D=3}
     public WindDirection direction;    
     public float windForce;
-    private SpriteRenderer spriteRenderer;
-    public List<Sprite> sprites;
+    private ParticleSystem windEffect;
+  
+    public float minWindForce { get; } = 0;
+    public float maxWindForce { get; set; } = 8f;
+    public float WindForce
+    {
+        get => windForce;
+        set
+        {
+            windForce = Mathf.Clamp(value, minWindForce, maxWindForce);
+            SetWindEffectSpeed(windForce);
+        }
+    }
 
     public void Start()//This is only shown for the moment to give a visual representation of the wind, will be replace with particle effects
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        windEffect = GetComponentInChildren<ParticleSystem>();
         switch (direction)
         {
             case WindDirection.L:
-                spriteRenderer.sprite = sprites[0];
                 break;
             case WindDirection.R:
-                spriteRenderer.sprite = sprites[1];
+                windEffect.gameObject.transform.eulerAngles = new Vector3(-180, 180, 180);
                 break;
             case WindDirection.U:
-                spriteRenderer.sprite = sprites[2];
+                windEffect.gameObject.transform.eulerAngles = new Vector3(-180, 0, 270);
                 break;
             case WindDirection.D:
-                spriteRenderer.sprite = sprites[3];
+                windEffect.gameObject.transform.eulerAngles = new Vector3(-180, 180, -270);
                 break;
         }
+        SetWindEffectSpeed(WindForce);
+    }
+
+    
+    public void SetWindEffectSpeed(float windForce)
+    {
+        if(windEffect == null)return;
+        var newEmission = windEffect.emission;
+        newEmission.rateOverTime = windForce/3;
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Vector2 GetDirection()
@@ -47,10 +67,13 @@ public class WindBlock : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
-        if (playerManager != null /*&& playerManager.PlayerStateMachine.CurrentPlayerState == playerManager.PaperPlaneState*/)
+        if (playerManager != null && playerManager.PlayerStateMachine.CurrentPlayerState != playerManager.CharacterState)
         {
-            Debug.Log("is Pushing");
-            playerManager.rb2D.AddForce(GetDirection() * windForce,ForceMode2D.Force);
+            playerManager.transform.position += (Vector3)(GetDirection() * windForce* Time.deltaTime);
         }
+    }
+    public void VariateWindForce()
+    {
+        WindForce += Random.Range(-3f, 3f);
     }
 }

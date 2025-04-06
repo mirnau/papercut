@@ -4,6 +4,7 @@ public class PaperPlaneState : BaseState
 {
     public PaperPlaneState(PlayerManager PSMManager, PlayerStateMachine playerStateMachine) : base(PSMManager, playerStateMachine)
     {
+        stateGravityScale = 0.5f;
     }
 
     public override void ApplyMovement(float verticalPower)
@@ -14,7 +15,7 @@ public class PaperPlaneState : BaseState
     public override void EnterState()
     {
         playerManager.characterSprite = PlayerManager.CharacterSprite.Plane;
-        playerManager.rb2D.gravityScale = 0.5f;
+        
         base.EnterState();
     }
 

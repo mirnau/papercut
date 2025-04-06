@@ -15,7 +15,6 @@ public class CharacterState : BaseState
     public override void EnterState()
     {
         playerManager.characterSprite = PlayerManager.CharacterSprite.Square;
-        playerManager.rb2D.gravityScale = 1f;
         base.EnterState();
     }
 

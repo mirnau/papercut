@@ -5,6 +5,7 @@ public class BaseState
 {
     protected PlayerManager playerManager;
     protected PlayerStateMachine playerStateMachine;
+    protected float stateGravityScale =1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public BaseState(PlayerManager PlayerManager , PlayerStateMachine playerStateMachine)
@@ -20,12 +21,21 @@ public class BaseState
     public virtual void PhysicsUpdate()
     {
         ApplyMovement(0);
+        if(playerManager.isGrounded)
+        {
+            playerManager.rb2D.gravityScale = 0;
+        }
+        else
+        {
+            playerManager.rb2D.gravityScale = stateGravityScale;
+        }
 
     }
     public virtual void EnterState() 
     {
 
         playerManager.transform.rotation = Quaternion.identity;
+        playerManager.rb2D.gravityScale = stateGravityScale;
         playerManager.ChangeSprite();
     }
 
@@ -40,7 +50,7 @@ public class BaseState
         }
         if (playerManager.direction.y != 0 && playerManager.isGrounded)
         {
-            playerManager.rb2D.AddForce(playerManager.transform.up * verticalPower);
+            playerManager.rb2D.AddForce(playerManager.transform.up * verticalPower,ForceMode2D.Impulse);
         }
 
     }

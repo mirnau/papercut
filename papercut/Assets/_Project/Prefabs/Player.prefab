@@ -135,9 +135,9 @@ MonoBehaviour:
   - {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   - {fileID: -2413806693520163455, guid: 0b66e70b4be344841bf788590f5c379e, type: 3}
   - {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  speed: 4
-  jumpPower: 20
-  flightPower: 20
+  speed: 13
+  jumpPower: 4
+  flightPower: 3
   direction: {x: 0, y: 0}
   isGrounded: 0
 --- !u!60 &12601246775127452
