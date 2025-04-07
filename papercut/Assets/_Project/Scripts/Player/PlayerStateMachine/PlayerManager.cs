@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -26,8 +27,11 @@ public class PlayerManager : MonoBehaviour
 
     //Movement
     public float speed = 1.0f;
+    public float jumpPower = 3.0f;
+    public float flightPower = 5f;
     private PlayerControls playerControls;
     public Vector2 direction;
+    public bool isGrounded;
 
     private void OnEnable() => playerControls.Player.Enable();
     private void OnDisable() => playerControls.Player.Disable();
@@ -53,7 +57,11 @@ public class PlayerManager : MonoBehaviour
         PlayerStateMachine.Initialize(CharacterState);
     }
 
-    // Update is called once per frame
+   
+    void FixedUpdate()
+    {
+        PlayerStateMachine.CurrentPlayerState.PhysicsUpdate();
+    }
     void Update()
     {
         PlayerStateMachine.CurrentPlayerState.Update();
@@ -82,5 +90,14 @@ public class PlayerManager : MonoBehaviour
         List<Vector2> path = new List<Vector2>();
         spriteRenderer.sprite.GetPhysicsShape(0, path); // Fetch new shape
         polygonCollider.SetPath(0, path);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isGrounded = false;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        isGrounded = true;
     }
 }
