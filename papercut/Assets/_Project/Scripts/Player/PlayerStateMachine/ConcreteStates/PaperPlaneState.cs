@@ -4,7 +4,7 @@ public class PaperPlaneState : BaseState
 {
     public PaperPlaneState(PlayerManager PSMManager, PlayerStateMachine playerStateMachine) : base(PSMManager, playerStateMachine)
     {
-        stateGravityScale = 0.5f;
+        stateGravityScale = 0.4f;
     }
 
     public override void ApplyMovement(float verticalPower)

@@ -27,8 +27,8 @@ public class PlayerManager : MonoBehaviour
 
     //Movement
     public float speed = 1.0f;
-    public float jumpPower = 3.0f;
-    public float flightPower = 5f;
+    public float jumpPower ;
+    public float flightPower ;
     private PlayerControls playerControls;
     public Vector2 direction;
     public bool isGrounded;

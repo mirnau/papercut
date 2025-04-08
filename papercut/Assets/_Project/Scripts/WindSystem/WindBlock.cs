@@ -70,7 +70,7 @@ public class WindBlock : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
-        if (playerManager != null && playerManager.PlayerStateMachine.CurrentPlayerState != playerManager.CharacterState)
+        if (playerManager != null && (playerManager.PlayerStateMachine.CurrentPlayerState == playerManager.BallState ||(playerManager.PlayerStateMachine.CurrentPlayerState == playerManager.PaperPlaneState && !playerManager.isGrounded)))
         {
             playerManager.transform.position += (Vector3)(GetDirection() * windForce* Time.deltaTime);
         }
