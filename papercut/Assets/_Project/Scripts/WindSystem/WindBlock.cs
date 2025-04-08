@@ -23,6 +23,7 @@ public class WindBlock : MonoBehaviour
     public void Start()//This is only shown for the moment to give a visual representation of the wind, will be replace with particle effects
     {
         windEffect = GetComponentInChildren<ParticleSystem>();
+        var newShape = windEffect.GetComponent<ParticleSystem>().shape.scale;
         switch (direction)
         {
             case WindDirection.L:
@@ -32,9 +33,11 @@ public class WindBlock : MonoBehaviour
                 break;
             case WindDirection.U:
                 windEffect.gameObject.transform.eulerAngles = new Vector3(-180, 0, 270);
+                newShape = new Vector3(5.5f, 20, 1);
                 break;
             case WindDirection.D:
                 windEffect.gameObject.transform.eulerAngles = new Vector3(-180, 180, -270);
+                newShape = new Vector3(5.5f, 20, 1);
                 break;
         }
         SetWindEffectSpeed(WindForce);
@@ -72,8 +75,8 @@ public class WindBlock : MonoBehaviour
             playerManager.transform.position += (Vector3)(GetDirection() * windForce* Time.deltaTime);
         }
     }
-    public void VariateWindForce()
+    public void VariateWindForce(float variation)
     {
-        WindForce += Random.Range(-3f, 3f);
+        WindForce += Random.Range(-variation, variation);
     }
 }

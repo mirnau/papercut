@@ -10,7 +10,9 @@ public class WindSystemGenerator : MonoBehaviour
     [SerializeField] private GameObject WindBlock;
     private WindBlock[,] windBlockGrid;
     [Tooltip("Will be 8f by default if unchanged")]
-    [SerializeField] private float maxSystemWindForce; 
+    [SerializeField] private float maxSystemWindForce;
+    [Tooltip("How much the wind force can vary from block to block")]
+    [SerializeField] private float systemWindVariation;
 
     public void Start()
     {
@@ -59,7 +61,7 @@ public class WindSystemGenerator : MonoBehaviour
                 }
                 windBlockGrid[j,i] = windBlock;
 
-                windBlockGrid[j, i].VariateWindForce();
+                windBlockGrid[j, i].VariateWindForce(systemWindVariation);
 
             }
         }
