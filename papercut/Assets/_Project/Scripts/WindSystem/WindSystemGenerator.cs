@@ -4,7 +4,7 @@ using static WindBlock;
 
 public class WindSystemGenerator : MonoBehaviour
 {
-    private enum SystemType { Random, S_Current}
+    private enum SystemType { Random, S_Current, L_Current}
     [SerializeField] private SystemType type;
     [SerializeField] private Vector2Int systemSize;
     [SerializeField] private GameObject WindBlock;
@@ -25,6 +25,9 @@ public class WindSystemGenerator : MonoBehaviour
                 break;
             case SystemType.S_Current:
                 S_CurrentGeneration();
+                break;
+            case SystemType.L_Current:
+                L_CurrentGeneration();
                 break;
         }
     }
@@ -97,5 +100,58 @@ public class WindSystemGenerator : MonoBehaviour
                 }
             }
         }
+    }
+    public void L_CurrentGeneration()
+    {
+        for (int i = 0; i < systemSize.y; i++)
+        {
+            for (int j = 0; j < systemSize.x; j++)
+            {
+                GameObject newBlock = Instantiate(WindBlock, transform.position + new Vector3(j * WindBlock.transform.localScale.x + WindBlock.transform.localScale.x / 2, i * WindBlock.transform.localScale.y + WindBlock.transform.localScale.y / 2, 0), Quaternion.identity);
+                newBlock.transform.parent = transform;
+                WindBlock windBlock = newBlock.GetComponent<WindBlock>();
+                if (maxSystemWindForce != 0)
+                {
+                    windBlock.maxWindForce = maxSystemWindForce;
+                }
+                windBlockGrid[j, i] = windBlock;
+
+                windBlockGrid[j, i].VariateWindForce(systemWindVariation); 
+                int middleLeft = (systemSize.x - 1) / 2;
+                int middleRight = systemSize.x / 2;
+
+                if (i == 0) // Bottom row
+                {
+                    if (j < middleLeft) // Left side
+                    {
+                        windBlockGrid[j, i].direction = WindDirection.R; // right
+                    }
+                    else if (j > middleRight) // Right side
+                    {
+                        windBlockGrid[j, i].direction = WindDirection.L;// left
+                    }
+                    else // Middle columns
+                    {
+                        windBlockGrid[j, i].direction = WindDirection.U; // up
+                        windBlockGrid[j, i].WindForce *= 2;
+                    }
+                }
+                else // Above bottom row
+                {
+                    if (j == middleLeft || j == middleRight) // Middle columns
+                    {
+                        windBlockGrid[j, i].direction = WindDirection.U; // up
+                        windBlockGrid[j, i].WindForce *= 2;
+                    }
+                    else
+                    {
+                        Destroy(windBlockGrid[j, i].gameObject);
+                        windBlockGrid[j, i] = null;
+                    }
+                }
+
+            }
+        }
+
     }
 }
